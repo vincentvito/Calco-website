@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Skeuo Calc is a premium tactile calculator for iPhone with beautiful design, pro features, and zero ads."
+    />
+    <title>Skeuo Calc · The Calculator You Want To Touch</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="manifest" href="manifest.json" />
+    <style>
+      :root {
+        --font-display: "SF Pro Display", "SF Pro Text", -apple-system,
+          BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial,
+          sans-serif;
+        --font-text: "SF Pro Text", "SF Pro Display", -apple-system,
+          BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, Helvetica, Arial,
+          sans-serif;
+
+        /* ====== WARM (light, default): clean white canvas with orange accent ====== */
+        /* Tinted neutrals: every white/black tilts ~0.005 chroma toward the brand hue (warm). */
+        --paper: #fefdfa;
+        --ink-pure: #0c0a04;
+        --bg: var(--paper);
+        --bg-spot-a: transparent;
+        --bg-spot-b: transparent;
+        --bg-spot-c: transparent;
+        --bg-deep: var(--paper);
+        --bg-tail: var(--paper);
+        --bg-alt: #f5f4ef;
+        --bg-card: var(--paper);
+        --ink: #1d1c18;
+        --ink-soft: #6e6c66;
+        --line: rgba(12, 10, 4, 0.08);
+        --line-strong: rgba(12, 10, 4, 0.18);
+        --accent: #ff5f2c;
+        --accent-deep: #ca3d12;
+        --accent-soft: rgba(255, 95, 44, 0.14);
+        --accent-glow: rgba(255, 133, 76, 0.32);
+
+        --nav-blur: saturate(180%) blur(20px);
+        --nav-bg: rgba(254, 253, 250, 0.78);
+
+        --eyebrow-bg: rgba(254, 253, 250, 0.85);
+        --eyebrow-ring: rgba(255, 95, 44, 0.18);
+        --chip-bg: var(--paper);
+        --chip-ink: var(--ink);
+
+        --pill-bg: var(--ink-pure);
+        --pill-ink: var(--paper);
+        --pill-bg-hover: #1a1408;
+
+        /* Shadows tinted toward warm-black (chroma ~0.01 hue 60) instead of neutral 0,0,0. */
+        --shadow-card: 0 1px 2px rgba(28, 18, 4, 0.05),
+          0 14px 32px rgba(28, 18, 4, 0.09);
+        --shadow-hero: 0 60px 90px rgba(28, 18, 4, 0.16),
+          0 22px 36px rgba(28, 18, 4, 0.10);
+
+        --container: 1240px;
+        --gutter: clamp(20px, 4vw, 56px);
+
+        --radius-sm: 14px;
+        --radius-md: 22px;
+        --radius-lg: 32px;
+        --radius-pill: 980px;
+      }
+
+      [data-theme="neon"] {
+        --bg: #060a16;
+        --bg-spot-a: rgba(25, 232, 198, 0.28);
+        --bg-spot-b: rgba(70, 116, 255, 0.24);
+        --bg-spot-c: rgba(13, 192, 171, 0.22);
+        --bg-deep: #0d1628;
+        --bg-tail: #070e1e;
+        --bg-alt: rgba(13, 22, 40, 0.55);
+        --bg-card: rgba(12, 21, 40, 0.72);
+        --ink: #ecf4ff;
+        --ink-soft: #9fb0d0;
+        --line: rgba(128, 154, 214, 0.18);
+        --line-strong: rgba(128, 154, 214, 0.32);
+        --accent: #18e8c8;
+        --accent-deep: #0db8a0;
+        --accent-soft: rgba(24, 232, 200, 0.16);
+        --accent-glow: rgba(24, 232, 200, 0.35);
+
+        --nav-bg: rgba(6, 10, 22, 0.72);
+
+        --eyebrow-bg: rgba(13, 22, 40, 0.72);
+        --eyebrow-ring: rgba(24, 232, 200, 0.22);
+        --chip-bg: rgba(12, 21, 40, 0.65);
+        --chip-ink: #ecf4ff;
+
+        --pill-bg: linear-gradient(150deg, #16e0c1, #0eb29b);
+        --pill-ink: #061018;
+        --pill-bg-hover: linear-gradient(150deg, #20f0d0, #10c4ab);
+
+        /* Neon-theme shadows tinted toward cool-navy-black (chroma ~0.01 hue 250). */
+        --shadow-card: 0 1px 2px rgba(2, 6, 18, 0.45),
+          0 22px 48px rgba(2, 6, 18, 0.60);
+        --shadow-hero: 0 60px 140px rgba(2, 6, 18, 0.70),
+          0 24px 48px rgba(2, 6, 18, 0.46);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 5% 6%, var(--bg-spot-a) 0, transparent 32%),
+          radial-gradient(circle at 92% 2%, var(--bg-spot-b) 0, transparent 28%),
+          radial-gradient(circle at 84% 78%, var(--bg-spot-c) 0, transparent 24%),
+          linear-gradient(155deg, var(--bg), var(--bg-deep) 55%, var(--bg-tail));
+        background-attachment: fixed;
+        color: var(--ink);
+        font-family: var(--font-text);
+        font-size: 17px;
+        line-height: 1.5;
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition: color 280ms ease, background-color 280ms ease;
+      }
+
+      ::selection { background: var(--accent); color: var(--paper); }
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+      .container-wide { max-width: 1600px; margin: 0 auto; padding: 0 var(--gutter); }
+
+      /* ===== Nav ===== */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--nav-bg);
+        backdrop-filter: var(--nav-blur);
+        -webkit-backdrop-filter: var(--nav-blur);
+        border-bottom: 1px solid var(--line);
+        transition: background-color 280ms ease, border-color 280ms ease;
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 10px var(--gutter);
+        gap: 16px;
+      }
+      .wordmark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-display);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        font-size: 17px;
+        color: var(--ink);
+      }
+      .wordmark-dot {
+        width: 26px;
+        height: 26px;
+        border-radius: 9px;
+        background: linear-gradient(140deg, #ff8b2f 0%, #ff5f2c 60%, #d8401b 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.38),
+          inset 0 -2px 5px rgba(120, 35, 5, 0.45),
+          0 6px 14px rgba(255, 95, 44, 0.25);
+        position: relative;
+      }
+      [data-theme="neon"] .wordmark-dot {
+        background: linear-gradient(140deg, #1eecc6 0%, #18e8c8 60%, #0db8a0 100%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.28),
+          inset 0 -2px 5px rgba(7, 75, 65, 0.6),
+          0 6px 14px rgba(24, 232, 200, 0.32);
+      }
+      .wordmark-dot::after {
+        content: "=";
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: var(--paper);
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-actions { display: flex; align-items: center; gap: 10px; }
+
+      .theme-toggle {
+        appearance: none;
+        background: transparent;
+        border: 1px solid var(--line-strong);
+        color: var(--ink);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        transition: background-color 200ms ease, border-color 200ms ease,
+          transform 200ms ease;
+      }
+      .theme-toggle:hover { background: var(--bg-alt); transform: scale(1.05); }
+      .theme-toggle svg { width: 18px; height: 18px; }
+      .theme-toggle .sun { display: none; }
+      .theme-toggle .moon { display: block; }
+      [data-theme="neon"] .theme-toggle .sun { display: block; }
+      [data-theme="neon"] .theme-toggle .moon { display: none; }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--pill-bg);
+        color: var(--pill-ink);
+        padding: 11px 22px;
+        border-radius: var(--radius-pill);
+        font-size: 15px;
+        font-weight: 500;
+        letter-spacing: -0.005em;
+        border: none;
+        cursor: pointer;
+        transition: background 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      }
+      .pill:hover { background: var(--pill-bg-hover); transform: translateY(-1px); }
+      [data-theme="neon"] .pill { box-shadow: 0 8px 22px rgba(11, 187, 159, 0.25); }
+
+      .pill-accent {
+        background: var(--accent);
+        color: var(--paper);
+      }
+      [data-theme="neon"] .pill-accent { background: var(--accent); color: #06151c; }
+      .pill-accent:hover { background: var(--accent-deep); }
+
+      .pill-ghost {
+        background: var(--bg-card);
+        color: var(--ink);
+        border: 1px solid var(--line);
+        box-shadow: none;
+      }
+      .pill-ghost:hover { background: var(--bg-alt); }
+
+      /* ===== Section base ===== */
+      section { padding: clamp(72px, 11vw, 160px) 0; position: relative; }
+      section.alt { background: var(--bg-alt); }
+
+      /* Hero pill eyebrow with accent dot (v1-style) */
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--eyebrow-bg);
+        border: 1px solid var(--line);
+        font-size: 14px;
+        letter-spacing: 0.01em;
+        color: var(--ink);
+        margin: 0 0 18px;
+        backdrop-filter: blur(8px);
+      }
+      .hero-eyebrow::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 5px var(--eyebrow-ring);
+        flex-shrink: 0;
+      }
+      .hero-launch-note {
+        margin: 18px 0 0;
+        font-size: 14px;
+        color: var(--ink-soft);
+      }
+      .hero-chips {
+        margin: 28px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .hero-chips li {
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--chip-bg);
+        color: var(--chip-ink);
+        font-size: 14px;
+        backdrop-filter: blur(8px);
+      }
+      @media (max-width: 880px) {
+        .hero-chips { justify-content: center; }
+      }
+
+      h1, h2, h3 {
+        font-family: var(--font-display);
+        margin: 0;
+        letter-spacing: -0.035em;
+        color: var(--ink);
+      }
+      h1.display {
+        font-size: clamp(36px, 4.8vw, 72px);
+        line-height: 1.02;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        max-width: 18ch;
+      }
+      h2.display {
+        font-size: clamp(36px, 5.6vw, 76px);
+        line-height: 1.04;
+        font-weight: 600;
+        letter-spacing: -0.035em;
+        max-width: 18ch;
+      }
+      h3.section-title {
+        font-size: clamp(26px, 3.2vw, 42px);
+        line-height: 1.1;
+        font-weight: 600;
+        max-width: 22ch;
+      }
+      .lead {
+        font-size: clamp(18px, 1.5vw, 21px);
+        line-height: 1.5;
+        color: var(--ink-soft);
+        max-width: 56ch;
+        margin: 24px 0 0;
+      }
+      .small { font-size: 14px; color: var(--ink-soft); }
+
+      /* ===== Hero ===== */
+      .hero {
+        padding-top: clamp(8px, 1vw, 20px);
+        padding-bottom: clamp(16px, 2vw, 32px);
+        overflow: hidden;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 0.82fr 1.18fr;
+        align-items: center;
+        gap: clamp(24px, 4vw, 64px);
+        min-height: 0;
+      }
+      .hero-text { text-align: left; }
+      .hero .eyebrow { margin-bottom: 18px; }
+      .hero h1.display { margin: 0; }
+      .hero .lead { margin: 24px 0 0; max-width: 44ch; }
+      .hero-ctas {
+        margin-top: 36px;
+        display: flex;
+        gap: 12px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .hero-stage {
+        position: relative;
+        perspective: 1600px;
+        perspective-origin: 50% 35%;
+        width: 100%;
+        display: grid;
+        place-items: center;
+      }
+      .hero-phone {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 92vh;
+        will-change: transform;
+        transition: transform 60ms linear;
+        transform: perspective(1600px) rotateX(8deg) rotateY(-10deg)
+          translateY(0);
+        filter:
+          drop-shadow(0 60px 80px rgba(0, 0, 0, 0.18))
+          drop-shadow(0 18px 30px rgba(0, 0, 0, 0.10));
+      }
+      [data-theme="neon"] .hero-phone {
+        filter:
+          drop-shadow(0 60px 90px rgba(0, 0, 0, 0.6))
+          drop-shadow(0 18px 36px rgba(0, 0, 0, 0.5))
+          drop-shadow(0 0 60px rgba(24, 232, 200, 0.18));
+      }
+
+      .hero-phone.warm-only { display: block; }
+      .hero-phone.neon-only { display: none; }
+      [data-theme="neon"] .hero-phone.warm-only { display: none; }
+      [data-theme="neon"] .hero-phone.neon-only { display: block; }
+
+      .hero-bg-blob {
+        position: absolute;
+        inset: -20% -25% -10%;
+        background: radial-gradient(
+          55% 55% at 50% 45%,
+          var(--accent-glow),
+          rgba(255, 140, 80, 0) 72%
+        );
+        z-index: -1;
+        pointer-events: none;
+        filter: blur(20px);
+      }
+      [data-theme="neon"] .hero-bg-blob {
+        background: radial-gradient(
+          55% 55% at 50% 45%,
+          var(--accent-glow),
+          rgba(24, 232, 200, 0) 72%
+        );
+      }
+
+      @media (max-width: 880px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: clamp(24px, 6vw, 40px);
+          min-height: 0;
+        }
+        .hero-text { text-align: center; }
+        .hero h1.display { margin-left: auto; margin-right: auto; }
+        .hero .lead { margin-left: auto; margin-right: auto; }
+        .hero-ctas { justify-content: center; }
+        .hero-phone { width: min(100%, 460px); }
+      }
+
+      /* ===== Theme image swap (used in every section) ===== */
+      .img-day { display: block; }
+      .img-night { display: none; }
+      [data-theme="neon"] .img-day { display: none; }
+      [data-theme="neon"] .img-night { display: block; }
+      .img-stack {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* ===== Two-col layouts ===== */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: clamp(28px, 4vw, 72px);
+      }
+      .two-col.reverse > :first-child { order: 2; }
+      @media (max-width: 880px) {
+        .two-col { grid-template-columns: 1fr; }
+        .two-col.reverse > :first-child { order: initial; }
+      }
+
+      .image-block {
+        border-radius: 0;
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+        background: var(--bg-card);
+      }
+      .image-block img { width: 100%; height: auto; }
+
+      /* ===== Modes ===== */
+      .modes-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin: 48px 0 0;
+      }
+      @media (max-width: 880px) {
+        .modes-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      .mode-card {
+        background: var(--bg-card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        padding: 22px 22px 24px;
+        transition: transform 220ms ease, border-color 220ms ease,
+          background-color 220ms ease;
+        backdrop-filter: blur(8px);
+      }
+      .mode-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--line-strong);
+      }
+      .mode-card .mode-tag {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .mode-card h4 {
+        font-family: var(--font-display);
+        font-size: 19px;
+        margin: 0 0 6px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .mode-card p {
+        margin: 0;
+        font-size: 14.5px;
+        line-height: 1.45;
+        color: var(--ink-soft);
+      }
+
+      .modes-showcase {
+        margin-top: clamp(40px, 6vw, 72px);
+        background: var(--bg-card);
+        border: 1px solid var(--line);
+        border-radius: 0;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        backdrop-filter: blur(8px);
+      }
+      @media (max-width: 880px) {
+        .modes-showcase { grid-template-columns: 1fr; }
+      }
+      .modes-showcase .copy {
+        padding: clamp(28px, 4vw, 56px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .modes-showcase .copy h3 { margin-bottom: 16px; }
+      .modes-showcase .img {
+        position: relative;
+        overflow: hidden;
+        min-height: 480px;
+        background: var(--bg-deep);
+      }
+      .modes-showcase .img img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      [data-theme="neon"] .modes-showcase .img { background: #050b1a; }
+
+      /* ===== Full-bleed ===== */
+      .fullbleed {
+        position: relative;
+        padding: 0;
+        height: clamp(420px, 70vh, 720px);
+        overflow: hidden;
+      }
+      .fullbleed::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(12, 8, 2, 0) 30%,
+          rgba(12, 8, 2, 0.58) 100%
+        );
+        z-index: 1;
+      }
+      .fullbleed .overlay {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        align-items: flex-end;
+        padding: clamp(28px, 6vw, 80px) var(--gutter);
+      }
+      .fullbleed h2 {
+        color: var(--paper);
+        max-width: 22ch;
+        text-shadow: 0 2px 30px rgba(12, 8, 2, 0.32);
+      }
+
+      /* ===== Duo ===== */
+      .duo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(16px, 2vw, 28px);
+        margin-top: clamp(40px, 6vw, 72px);
+      }
+      @media (max-width: 880px) { .duo-grid { grid-template-columns: 1fr; } }
+      .duo-grid .image-block img {
+        aspect-ratio: 4/5;
+        object-fit: cover;
+      }
+      .duo-grid .image-block.wide img {
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+
+      /* ===== Heritage ===== */
+      .heritage { text-align: center; }
+      .heritage .image-block {
+        max-width: 1100px;
+        margin: clamp(40px, 6vw, 72px) auto 0;
+      }
+      .heritage .image-block img {
+        aspect-ratio: 16/9;
+        object-fit: cover;
+      }
+
+      /* ===== Details (bauhaus minimal) ===== */
+      .details {
+        padding-top: clamp(48px, 7vw, 96px);
+        padding-bottom: clamp(48px, 7vw, 96px);
+      }
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(20px, 2vw, 32px);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: clamp(28px, 4vw, 48px) 0;
+      }
+      @media (max-width: 880px) {
+        .details-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 24px 16px;
+        }
+      }
+      .detail-item { display: flex; flex-direction: column; gap: 4px; }
+      .detail-label {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+      .detail-value {
+        font-family: var(--font-display);
+        font-size: clamp(22px, 2.2vw, 30px);
+        font-weight: 600;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+      }
+      .detail-note {
+        font-size: 13px;
+        color: var(--ink-soft);
+        line-height: 1.4;
+      }
+
+      /* ===== Final CTA ===== */
+      .final-cta {
+        position: relative;
+        padding: 0;
+        min-height: clamp(540px, 75vh, 820px);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        text-align: center;
+        color: var(--paper);
+      }
+      .final-cta::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(12, 8, 2, 0.22) 0%,
+          rgba(12, 8, 2, 0.68) 100%
+        );
+        z-index: 1;
+      }
+      .final-cta .inner {
+        position: relative;
+        z-index: 2;
+        padding: var(--gutter);
+        max-width: 760px;
+      }
+      .final-cta h2.display { color: var(--paper); margin: 0 auto; }
+      .final-cta .lead {
+        color: rgba(254, 250, 240, 0.88);
+        margin: 28px auto 36px;
+      }
+      .final-cta .ctas {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .final-cta .pill { background: var(--paper); color: var(--ink-pure); }
+      .final-cta .pill:hover { background: var(--paper); transform: translateY(-1px); }
+      .final-cta .pill-accent { background: var(--accent); color: var(--paper); }
+      [data-theme="neon"] .final-cta .pill-accent { color: #06151c; }
+      .final-cta .small {
+        color: rgba(254, 250, 240, 0.72);
+        margin-top: 18px;
+      }
+
+      /* ===== Footer ===== */
+      footer { padding: 36px 0 44px; border-top: 1px solid var(--line); }
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 var(--gutter);
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+
+      /* ===== Focus visible (keyboard a11y, WCAG 2.1 AA per PRODUCT.md) ===== */
+      :focus { outline: none; }
+      a:focus-visible,
+      button:focus-visible,
+      .pill:focus-visible,
+      .wordmark:focus-visible,
+      .theme-toggle:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 999px;
+      }
+      .pill-ghost:focus-visible {
+        outline-color: var(--ink);
+      }
+      .final-cta .pill:focus-visible {
+        outline-color: var(--paper);
+        outline-offset: 4px;
+      }
+
+      /* ===== Reveal on scroll ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
+          transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .reveal.in { opacity: 1; transform: translateY(0); }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+        .hero-phone { transform: perspective(1600px) rotateX(8deg) rotateY(-10deg) !important; }
+        .reveal { opacity: 1; transform: none; }
+      }
+
+      /* ===== Day & Night showcase section ===== */
+      .theme-showcase {
+        padding: clamp(96px, 14vw, 200px) 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .theme-showcase::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          55% 50% at 50% 55%,
+          rgba(255, 140, 80, 0.22),
+          transparent 70%
+        );
+        z-index: -1;
+        transition: background 600ms ease;
+        pointer-events: none;
+      }
+      .theme-showcase[data-show="neon"]::before {
+        background: radial-gradient(
+          55% 50% at 50% 55%,
+          rgba(24, 232, 200, 0.22),
+          transparent 70%
+        );
+      }
+      .ts-stage {
+        margin-top: clamp(40px, 5vw, 64px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(32px, 4vw, 56px);
+      }
+      .ts-phone-wrap {
+        position: relative;
+        width: min(100%, 480px);
+        aspect-ratio: 3 / 4;
+      }
+      .ts-phone {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 520ms ease,
+          transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .ts-warm {
+        filter:
+          drop-shadow(0 60px 80px rgba(120, 60, 14, 0.30))
+          drop-shadow(0 22px 32px rgba(120, 60, 14, 0.18));
+      }
+      .ts-neon {
+        filter:
+          drop-shadow(0 60px 80px rgba(0, 0, 0, 0.65))
+          drop-shadow(0 22px 32px rgba(0, 0, 0, 0.40))
+          drop-shadow(0 0 60px rgba(24, 232, 200, 0.20));
+      }
+      .theme-showcase[data-show="warm"] .ts-warm {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+      }
+      .theme-showcase[data-show="warm"] .ts-neon {
+        opacity: 0;
+        transform: scale(0.94);
+      }
+      .theme-showcase[data-show="neon"] .ts-neon {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+      }
+      .theme-showcase[data-show="neon"] .ts-warm {
+        opacity: 0;
+        transform: scale(0.94);
+      }
+
+      .ts-toggle {
+        display: inline-grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--bg-card);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px;
+        position: relative;
+        gap: 0;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+      }
+      .ts-thumb {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 4px;
+        width: calc(50% - 4px);
+        border-radius: 999px;
+        background: var(--accent);
+        z-index: 1;
+        transition: transform 360ms cubic-bezier(0.5, 0, 0.2, 1),
+          background-color 360ms ease;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+      }
+      .theme-showcase[data-show="warm"] .ts-thumb {
+        transform: translateX(0);
+        background: #ff5f2c;
+      }
+      .theme-showcase[data-show="neon"] .ts-thumb {
+        transform: translateX(100%);
+        background: #18e8c8;
+      }
+      .ts-opt {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        padding: 11px 30px;
+        border-radius: 999px;
+        font-family: var(--font-display);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        color: var(--ink-soft);
+        z-index: 2;
+        position: relative;
+        transition: color 320ms ease;
+      }
+      .ts-opt.active { color: var(--paper); }
+      [data-theme="neon"] .theme-showcase[data-show="neon"] .ts-opt.active { color: #06151c; }
+      .theme-showcase[data-show="warm"] .ts-opt.active { color: var(--paper); }
+      .ts-opt:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .ts-caption {
+        font-size: 14px;
+        color: var(--ink-soft);
+        margin-top: 4px;
+        letter-spacing: 0.01em;
+      }
+
+      /* ===== Testimonials ===== */
+      .testimonials { padding: clamp(72px, 11vw, 160px) 0; }
+      .testimonials-head {
+        max-width: 760px;
+        margin: 0 auto clamp(40px, 5vw, 64px);
+      }
+      .testimonials-rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 18px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--bg-card);
+        border: 1px solid var(--line);
+        font-size: 14px;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .testimonials-rating .stars { color: var(--accent); letter-spacing: 0.04em; }
+      .testimonials-rating strong { color: var(--ink); font-weight: 700; }
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(16px, 2vw, 28px);
+      }
+      @media (max-width: 980px) {
+        .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 620px) {
+        .testimonials-grid { grid-template-columns: 1fr; }
+      }
+      .testimonial {
+        background: var(--bg-card);
+        border: 1px solid var(--line);
+        padding: clamp(20px, 2.4vw, 32px);
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        transition: transform 240ms ease, border-color 240ms ease;
+        backdrop-filter: blur(8px);
+      }
+      .testimonial:hover {
+        transform: translateY(-2px);
+        border-color: var(--line-strong);
+      }
+      .testimonial-stars {
+        color: var(--accent);
+        font-size: 13px;
+        letter-spacing: 0.18em;
+      }
+      .testimonial-quote {
+        font-family: var(--font-display);
+        font-size: clamp(17px, 1.5vw, 21px);
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        margin: 0;
+      }
+      .testimonial-attrib {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+      .testimonial-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+      }
+      .testimonial-role {
+        font-size: 13px;
+        color: var(--ink-soft);
+      }
+
+
+    </style>
+  </head>
+  <body data-theme="warm">
+    <!-- ============ NAV ============ -->
+    <nav class="nav" aria-label="Primary">
+      <div class="nav-inner">
+        <a class="wordmark" href="#top" aria-label="Skeuo Calc home">
+          <span class="wordmark-dot" aria-hidden="true"></span>
+          <span>Skeuo Calc</span>
+        </a>
+        <div class="nav-actions">
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-label="Toggle Neon (dark) theme"
+            aria-pressed="false"
+          >
+            <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            </svg>
+          </button>
+          <a class="pill" href="#download" data-cta="nav">Download</a>
+        </div>
+      </div>
+    </nav>
+
+    <main id="top">
+      <!-- ============ HERO ============ -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-text">
+              <p class="hero-eyebrow">No ads. No subscriptions. Pure calculator joy.</p>
+              <h1 class="display">The calculator app that makes&nbsp;math feel premium.</h1>
+              <p class="lead">
+                Skeuo Calc puts tactile, skeuomorphic design at the centre of
+                everyday math. Basic and scientific. Currency, units,
+                finance. One beautiful app for iPhone and iPad.
+              </p>
+              <div class="hero-ctas">
+                <a class="pill pill-accent" href="#download">Download on the App Store</a>
+                <a class="pill pill-ghost" href="#modes">See it in motion</a>
+              </div>
+              <p class="hero-launch-note">Launch vibe: one-time purchase, built for impulse joy.</p>
+              <ul class="hero-chips">
+                <li>Works offline</li>
+                <li>7 calculator modes</li>
+                <li>Haptic and sound feedback</li>
+              </ul>
+            </div>
+
+            <div class="hero-stage" aria-hidden="false">
+              <div class="hero-bg-blob"></div>
+              <img
+                class="hero-phone warm-only"
+                src="images/v3-hero-phone-light.png"
+                alt="iPhone showing Skeuo Calc in the Warm theme: peach gradient, brushed silver panel, vivid warm orange operators"
+                loading="eager"
+                fetchpriority="high"
+              />
+              <img
+                class="hero-phone neon-only"
+                src="images/v3-hero-phone-dark.png"
+                alt="iPhone showing Skeuo Calc in the Neon theme: deep navy gradient, dark panel, mint-teal operators"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TACTILE (overhead desk) ============ -->
+      <section class="alt">
+        <div class="container">
+          <div class="two-col reveal">
+            <div class="image-block">
+              <img class="img-day" src="images/v3-desk-overhead-day.jpg"
+                alt="Overhead daylight view: oak desk with iPhone running Skeuo Calc Warm, leather notebook, espresso, fountain pen"
+                loading="lazy" />
+              <img class="img-night" src="images/v3-desk-overhead-night.jpg"
+                alt="Overhead evening view: warm brass-lamp pool over a walnut desk with iPhone running Skeuo Calc Neon"
+                loading="lazy" />
+            </div>
+            <div>
+              <h3 class="section-title">Built for the way your hands actually work.</h3>
+              <p class="lead">
+                Every key is sculpted with the soft give of an old desk
+                calculator. The display glows like an LCD from a Casio you
+                used to keep next to a notepad. It belongs on a desk.
+                Yours.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MODES ============ -->
+      <section id="modes">
+        <div class="container">
+          <div class="reveal" style="max-width: 760px">
+            <h2 class="display">Built to look expensive.<br />Built to be useful.</h2>
+            <p class="lead">
+              Switch from a quick tip calculation to scientific operations to
+              a currency conversion without ever leaving the same beautiful
+              surface.
+            </p>
+          </div>
+
+          <div class="modes-grid reveal">
+            <article class="mode-card">
+              <span class="mode-tag">Basic</span>
+              <h4>Everyday math</h4>
+              <p>Snappy basic math with memory keys and one-tap percent.</p>
+            </article>
+            <article class="mode-card">
+              <span class="mode-tag">Scientific</span>
+              <h4>Pro mode</h4>
+              <p>Trig, logs, powers, parentheses, constants. All a flick away.</p>
+            </article>
+            <article class="mode-card">
+              <span class="mode-tag">Currency</span>
+              <h4>Live conversion</h4>
+              <p>Convert between 150+ currencies with rates that stay fresh.</p>
+            </article>
+            <article class="mode-card">
+              <span class="mode-tag">Units</span>
+              <h4>Unit converter</h4>
+              <p>Length, mass, temperature, volume, energy, area, time. Done.</p>
+            </article>
+            <article class="mode-card">
+              <span class="mode-tag">TVM</span>
+              <h4>Finance solver</h4>
+              <p>Solve for present value, payment, rate, or term in seconds.</p>
+            </article>
+            <article class="mode-card">
+              <span class="mode-tag">Tools</span>
+              <h4>Dates &amp; %</h4>
+              <p>Date differences, tip splits, markup, discount. Built in.</p>
+            </article>
+          </div>
+
+          <div class="modes-showcase reveal">
+            <div class="copy">
+              <h3 class="section-title">Your calculator can finally look this good.</h3>
+              <p class="lead">
+                Crisp typography on a warm LCD, weighted button presses,
+                haptic feedback that makes you want to do one more sum just
+                to feel it.
+              </p>
+            </div>
+            <div class="img">
+              <img class="img-day" src="images/ipad-in-use-day.jpg"
+                alt="A person's hands holding an iPad Pro in portrait orientation in a bright daylight room, displaying Skeuo Calc in the Warm theme"
+                loading="lazy" />
+              <img class="img-night" src="images/ipad-in-use-night.jpg"
+                alt="A person's hands holding an iPad Pro in portrait orientation in a moody evening room, displaying Skeuo Calc in the Neon theme"
+                loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DAY & NIGHT SHOWCASE ============ -->
+      <section class="theme-showcase" data-show="warm" aria-label="Warm and Neon themes side by side">
+        <div class="container">
+          <div class="reveal" style="max-width: 720px; margin: 0 auto;">
+            <h2 class="display">Two moods. One app.</h2>
+            <p class="lead" style="margin-left:auto; margin-right:auto;">
+              Switch between Warm and Neon with a tap. Your calculator
+              follows the time of day, or your taste.
+            </p>
+          </div>
+
+          <div class="ts-stage reveal">
+            <div class="ts-phone-wrap">
+              <img class="ts-phone ts-warm" src="images/v3-hero-phone-light.png"
+                   alt="iPhone showing Skeuo Calc in the Warm theme" loading="lazy" />
+              <img class="ts-phone ts-neon" src="images/v3-hero-phone-dark.png"
+                   alt="iPhone showing Skeuo Calc in the Neon theme" loading="lazy" />
+            </div>
+            <div class="ts-toggle" role="radiogroup" aria-label="Preview theme">
+              <div class="ts-thumb" aria-hidden="true"></div>
+              <button type="button" class="ts-opt active" role="radio"
+                      aria-checked="true" data-mode="warm">Warm</button>
+              <button type="button" class="ts-opt" role="radio"
+                      aria-checked="false" data-mode="neon">Neon</button>
+            </div>
+            <p class="ts-caption">Local to this section. The rest of the page follows your top-of-page theme.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FULLBLEED WORKSPACE ============ -->
+      <section class="fullbleed reveal" aria-label="Skeuo Calc on a workspace">
+        <img class="img-stack img-day" src="images/v3-desk-three-quarter-day.jpg"
+          alt="Walnut desk in midday daylight with an iPhone in a MagSafe stand running Skeuo Calc Warm, blurred MacBook in the background"
+          loading="lazy" />
+        <img class="img-stack img-night" src="images/v3-desk-three-quarter-night.jpg"
+          alt="Walnut desk in moody evening light with an iPhone in a MagSafe stand running Skeuo Calc Neon, brass lamp glow"
+          loading="lazy" />
+        <div class="overlay container-wide">
+          <h2 class="display">Looks at home in any&nbsp;workspace.</h2>
+        </div>
+      </section>
+
+      <!-- ============ TACTILE DETAIL (hand + macro) ============ -->
+      <section class="alt">
+        <div class="container">
+          <div class="reveal" style="max-width: 760px">
+            <h2 class="display">Every key. Every digit. Considered.</h2>
+            <p class="lead">
+              The orange of the equals key is the same orange that's lived on
+              Casio keypads since 1985. The mint glow of the Neon theme is
+              tuned for the late hours. The haptic on each press is custom.
+            </p>
+          </div>
+          <div class="duo-grid">
+            <div class="image-block">
+              <img class="img-day" src="images/v3-hand-tactile-day.jpg"
+                alt="A hand holding an iPhone in a bright daylight cafe, thumb hovering above Skeuo Calc's orange equals key"
+                loading="lazy" />
+              <img class="img-night" src="images/v3-hand-tactile-night.jpg"
+                alt="A hand holding an iPhone in a moody evening cafe with Edison-bulb bokeh, thumb above the mint equals key"
+                loading="lazy" />
+            </div>
+            <div class="image-block">
+              <img src="images/v3-macro-display.jpg"
+                alt="Macro of the Skeuo Calc display showing 1,250 × 1.0825 = 1,353.13 in glowing green LCD digits"
+                loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ HERITAGE ============ -->
+      <section class="heritage">
+        <div class="container">
+          <div class="reveal" style="max-width: 720px; margin: 0 auto">
+            <h2 class="display">Skeuomorphic, done&nbsp;right.</h2>
+            <p class="lead" style="margin-left: auto; margin-right: auto">
+              The warmth of a 1980s desk calculator. The precision of a
+              modern operating system. The kind of small joy that turns a
+              chore into a ritual.
+            </p>
+          </div>
+          <div class="image-block reveal">
+            <img src="images/v3-heritage-side-by-side.jpg"
+              alt="A vintage cream Casio MS-80 next to an iPhone running Skeuo Calc Warm, flat-lay on beige paper"
+              loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ TESTIMONIALS ============ -->
+      <section class="testimonials alt" aria-label="What people say">
+        <div class="container">
+          <div class="testimonials-head reveal" style="text-align: center;">
+            <h2 class="display" style="margin-left:auto; margin-right:auto;">What people are saying.</h2>
+            <p class="testimonials-rating">
+              <span class="stars">★★★★★</span>
+              <span><strong>4.9</strong> · App Store</span>
+            </p>
+          </div>
+
+          <div class="testimonials-grid reveal">
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"Honestly? It does what any calculator does. But it's the first one I actually want to open."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Marta R.</span>
+                <span class="testimonial-role">Product designer · Milan</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"The age calculator is weirdly satisfying. I check coworkers' birthdays just to feel something."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Dani K.</span>
+                <span class="testimonial-role">iOS engineer</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"Currency rates always fresh, unit converter solid, history right on screen. Money well spent."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Tom L.</span>
+                <span class="testimonial-role">Freelance designer</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"Time-zone converter saved me from three different tabs. One app, done."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Priya S.</span>
+                <span class="testimonial-role">Remote PM</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"The haptic on the equals key is unreasonable. I do extra math just to feel it."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Luca M.</span>
+                <span class="testimonial-role">Audio engineer</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"My calculator shouldn't have a personality. This one does, and I forgive it."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Hannah B.</span>
+                <span class="testimonial-role">Writer · Berlin</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DETAILS (bauhaus minimal) ============ -->
+      <section class="details">
+        <div class="container">
+          <div class="reveal" style="max-width: 720px; margin: 0 auto 28px; text-align: center;">
+            <h3 class="section-title" style="margin-left: auto; margin-right: auto;">Built once. Built right.</h3>
+          </div>
+          <div class="details-grid reveal">
+            <div class="detail-item">
+              <span class="detail-label">Platform</span>
+              <span class="detail-value">iPhone &amp; iPad</span>
+              <span class="detail-note">Universal · iOS 17 or later</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Pricing</span>
+              <span class="detail-value">One-time</span>
+              <span class="detail-note">No ads. No subscriptions. No tracking.</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Modes</span>
+              <span class="detail-value">Seven</span>
+              <span class="detail-note">Basic · Scientific · Currency · Units · TVM · Date · %</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Themes</span>
+              <span class="detail-value">Warm &amp; Neon</span>
+              <span class="detail-note">Automatic with your system theme</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FINAL CTA ============ -->
+      <section class="final-cta" id="download" aria-label="Download Skeuo Calc">
+        <img class="img-stack img-day" src="images/v3-environment-wide-day.jpg"
+          alt="A designer's studio in clean midday daylight, plants, sketches, and an iPhone with Skeuo Calc Warm in the foreground"
+          loading="lazy" />
+        <img class="img-stack img-night" src="images/v3-environment-wide-night.jpg"
+          alt="A designer's studio in moody evening light with brass desk lamp, dusk view, and an iPhone with Skeuo Calc Neon in the foreground"
+          loading="lazy" />
+        <div class="inner">
+          <h2 class="display">Do not settle for a&nbsp;boring calculator icon.</h2>
+          <p class="lead">
+            One-time purchase. No ads. No subscriptions. Just the calculator
+            you've been wanting to touch.
+          </p>
+          <div class="ctas">
+            <a class="pill pill-accent" href="#">Download on the App Store</a>
+            <a class="pill" href="#modes">See the features</a>
+          </div>
+          <p class="small">iPhone &amp; iPad · Universal</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>Skeuo Calc · by Matteo Vitali · Made in Italy</span>
+        <span>© 2026</span>
+      </div>
+    </footer>
+
+    <script>
+      // ---- Theme toggle (Warm/Neon to mirror the app) ----
+      (function () {
+        const STORAGE_KEY = "skeuo-home-theme-v3";
+        const body = document.body;
+        const btn = document.getElementById("theme-toggle");
+
+        function apply(theme) {
+          body.setAttribute("data-theme", theme);
+          const isNeon = theme === "neon";
+          btn.setAttribute("aria-pressed", String(isNeon));
+          btn.setAttribute(
+            "aria-label",
+            isNeon ? "Switch to Warm (light) theme" : "Switch to Neon (dark) theme"
+          );
+        }
+
+        const params = new URLSearchParams(location.search);
+        const stored = localStorage.getItem(STORAGE_KEY);
+        const initial =
+          params.get("theme") ||
+          stored ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches ? "neon" : "warm");
+        apply(initial === "neon" ? "neon" : "warm");
+
+        btn.addEventListener("click", function () {
+          const next = body.getAttribute("data-theme") === "neon" ? "warm" : "neon";
+          apply(next);
+          try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+        });
+      })();
+
+      // ---- Hero parallax tilt ----
+      (function () {
+        const phones = document.querySelectorAll(".hero-phone");
+        const stage = document.querySelector(".hero-stage");
+        if (!stage || !phones.length) return;
+
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) return;
+
+        let ticking = false;
+        let mx = 0, my = 0;
+
+        function update() {
+          ticking = false;
+          const rect = stage.getBoundingClientRect();
+          const viewportH = window.innerHeight || 1;
+          const centerY = rect.top + rect.height / 2;
+          const t = Math.max(-1, Math.min(1, (viewportH / 2 - centerY) / (viewportH / 1.4)));
+          const rotX = 8 - t * 14 + my * 4;
+          const rotY = -10 + t * 6 + mx * 6;
+          const translateY = t * -16;
+          const tf = `perspective(1600px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(${translateY.toFixed(1)}px)`;
+          phones.forEach((p) => (p.style.transform = tf));
+        }
+
+        function onScroll() {
+          if (!ticking) { requestAnimationFrame(update); ticking = true; }
+        }
+        function onMove(e) {
+          const rect = stage.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2;
+          const cy = rect.top + rect.height / 2;
+          mx = Math.max(-1, Math.min(1, (e.clientX - cx) / (rect.width / 1.5)));
+          my = Math.max(-1, Math.min(1, (e.clientY - cy) / (rect.height / 1.5)));
+          onScroll();
+        }
+        function onLeave() { mx = 0; my = 0; onScroll(); }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+        stage.addEventListener("mousemove", onMove);
+        stage.addEventListener("mouseleave", onLeave);
+        update();
+      })();
+
+      // ---- Reveal on scroll ----
+      (function () {
+        const items = document.querySelectorAll(".reveal");
+        if (!("IntersectionObserver" in window)) {
+          items.forEach((i) => i.classList.add("in"));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("in");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+        );
+        items.forEach((i) => io.observe(i));
+      })();
+
+      // ---- Day/Night showcase toggle ----
+      (function () {
+        const section = document.querySelector(".theme-showcase");
+        if (!section) return;
+        const opts = section.querySelectorAll(".ts-opt");
+        opts.forEach((o) => {
+          o.addEventListener("click", () => {
+            const mode = o.dataset.mode;
+            section.setAttribute("data-show", mode);
+            opts.forEach((b) => {
+              const on = b === o;
+              b.classList.toggle("active", on);
+              b.setAttribute("aria-checked", on ? "true" : "false");
+            });
+          });
+        });
+      })();
+
+    </script>
+  </body>
+</html>
