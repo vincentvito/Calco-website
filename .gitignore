@@ -29,3 +29,7 @@ images/*.bak
 
 # Logs
 *.log
+
+# Node (App Store screenshot renderer)
+node_modules/
+app-store/node_modules/

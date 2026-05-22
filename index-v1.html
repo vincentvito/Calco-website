@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="Skeuo Calc is a premium tactile calculator for iPhone with beautiful design, pro features, and zero ads."
+    >
+    <title>Skeuo Calc | The Calculator You Want To Touch</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+      :root {
+        --font-main: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --font-display: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        --bg: #f6eddc;
+        --bg-deep: #ebdec7;
+        --bg-spot-a: #ffd7a7;
+        --bg-spot-b: #ffc48e;
+        --bg-spot-c: #ffd2a8;
+        --bg-tail: #e3d3bb;
+        --grain: rgba(255, 255, 255, 0.08);
+        --ink: #171512;
+        --ink-soft: #504738;
+        --accent: #ff5f2c;
+        --accent-deep: #ca3d12;
+        --panel-strong: rgba(255, 255, 255, 0.58);
+        --panel: rgba(255, 255, 255, 0.58);
+        --line: rgba(23, 21, 18, 0.14);
+        --shadow-lg: 0 30px 55px rgba(81, 49, 21, 0.21);
+        --shadow-md: 0 14px 34px rgba(48, 25, 9, 0.18);
+        --radius-lg: 30px;
+        --radius-md: 20px;
+        --brand-grad-a: #ff6f35;
+        --brand-grad-b: #ff8b2f;
+        --brand-grad-c: #ffd175;
+        --brand-shadow-hi: rgba(255, 255, 255, 0.38);
+        --brand-shadow-low: rgba(153, 64, 24, 0.36);
+        --top-cta-bg: #111;
+        --top-cta-color: #fff;
+        --top-cta-border: #000;
+        --top-cta-shadow: 0 10px 22px rgba(0, 0, 0, 0.2);
+        --top-cta-shadow-hover: 0 14px 26px rgba(0, 0, 0, 0.28);
+        --eyebrow-bg: rgba(255, 255, 255, 0.6);
+        --eyebrow-ring: rgba(255, 95, 44, 0.16);
+        --hero-chip-bg: rgba(255, 255, 255, 0.53);
+        --hero-chip-ink: #2f291f;
+        --hero-glow: rgba(255, 133, 76, 0.4);
+        --btn-muted-bg: rgba(255, 255, 255, 0.5);
+        --btn-muted-bg-hover: rgba(255, 255, 255, 0.8);
+        --btn-muted-ink: var(--ink);
+        --proof-shadow: 0 10px 24px rgba(108, 84, 55, 0.12);
+        --feature-bg: rgba(255, 255, 255, 0.58);
+        --feature-shadow: 0 10px 24px rgba(95, 67, 38, 0.1);
+        --showcase-bg-1: rgba(255, 255, 255, 0.58);
+        --showcase-bg-2: rgba(255, 255, 255, 0.28);
+        --final-grad-1: rgba(255, 108, 58, 0.96);
+        --final-grad-2: rgba(217, 70, 17, 0.96);
+        --final-ink: #fff6f1;
+        --final-copy: rgba(255, 245, 236, 0.95);
+        --final-btn-bg: #111;
+        --final-btn-ink: #fff;
+        --final-btn-border: rgba(255, 255, 255, 0.12);
+        --final-btn-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+        --footer-ink: #655740;
+        --theme-active-bg: #111;
+        --theme-active-ink: #fff;
+      }
+
+      body[data-theme="neon"] {
+        --bg: #060a16;
+        --bg-deep: #0d1628;
+        --bg-spot-a: rgba(25, 232, 198, 0.28);
+        --bg-spot-b: rgba(70, 116, 255, 0.24);
+        --bg-spot-c: rgba(13, 192, 171, 0.22);
+        --bg-tail: #070e1e;
+        --grain: rgba(255, 255, 255, 0.025);
+        --ink: #ecf4ff;
+        --ink-soft: #9fb0d0;
+        --accent: #18e8c8;
+        --accent-deep: #0db8a0;
+        --panel-strong: rgba(13, 23, 43, 0.78);
+        --panel: rgba(12, 21, 40, 0.73);
+        --line: rgba(128, 154, 214, 0.28);
+        --shadow-lg: 0 30px 55px rgba(4, 10, 24, 0.56);
+        --shadow-md: 0 14px 34px rgba(5, 13, 29, 0.6);
+        --brand-grad-a: #14d4b9;
+        --brand-grad-b: #1e6dd5;
+        --brand-grad-c: #11ebc9;
+        --brand-shadow-hi: rgba(175, 255, 243, 0.2);
+        --brand-shadow-low: rgba(9, 49, 98, 0.45);
+        --top-cta-bg: linear-gradient(150deg, #16e0c1, #0eb29b);
+        --top-cta-color: #071018;
+        --top-cta-border: rgba(18, 236, 202, 0.45);
+        --top-cta-shadow: 0 10px 22px rgba(11, 187, 159, 0.24);
+        --top-cta-shadow-hover: 0 14px 28px rgba(13, 214, 183, 0.3);
+        --eyebrow-bg: rgba(11, 19, 35, 0.75);
+        --eyebrow-ring: rgba(24, 232, 200, 0.22);
+        --hero-chip-bg: rgba(10, 18, 35, 0.72);
+        --hero-chip-ink: #e6f0ff;
+        --hero-glow: rgba(24, 232, 200, 0.35);
+        --btn-muted-bg: rgba(10, 18, 35, 0.72);
+        --btn-muted-bg-hover: rgba(14, 26, 50, 0.95);
+        --btn-muted-ink: #e9f3ff;
+        --proof-shadow: 0 10px 24px rgba(1, 4, 15, 0.45);
+        --feature-bg: rgba(11, 20, 38, 0.78);
+        --feature-shadow: 0 10px 24px rgba(2, 7, 19, 0.4);
+        --showcase-bg-1: rgba(11, 20, 40, 0.82);
+        --showcase-bg-2: rgba(8, 16, 33, 0.6);
+        --final-grad-1: rgba(18, 227, 194, 0.95);
+        --final-grad-2: rgba(8, 139, 126, 0.95);
+        --final-ink: #051116;
+        --final-copy: rgba(5, 20, 28, 0.82);
+        --final-btn-bg: #050c17;
+        --final-btn-ink: #eaffff;
+        --final-btn-border: rgba(234, 255, 255, 0.25);
+        --final-btn-shadow: 0 12px 24px rgba(0, 0, 0, 0.38);
+        --footer-ink: #7481a2;
+        --theme-active-bg: rgba(20, 238, 205, 0.2);
+        --theme-active-ink: #73ffe7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--font-main);
+        background:
+          radial-gradient(circle at 5% 8%, var(--bg-spot-a) 0, transparent 32%),
+          radial-gradient(circle at 93% 2%, var(--bg-spot-b) 0, transparent 28%),
+          radial-gradient(circle at 84% 80%, var(--bg-spot-c) 0, transparent 24%),
+          linear-gradient(155deg, var(--bg), var(--bg-deep) 55%, var(--bg-tail));
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          repeating-linear-gradient(
+            0deg,
+            var(--grain) 0 1px,
+            transparent 1px 3px
+          );
+        opacity: 0.35;
+        z-index: 1;
+      }
+
+      .site-wrap {
+        position: relative;
+        z-index: 2;
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 22px 0 8px;
+      }
+
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--ink);
+        text-decoration: none;
+        font-weight: 800;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background:
+          linear-gradient(145deg, var(--brand-grad-a), var(--brand-grad-b) 44%, var(--brand-grad-c));
+        box-shadow:
+          inset -5px -5px 10px var(--brand-shadow-hi),
+          inset 5px 5px 10px var(--brand-shadow-low);
+      }
+
+      .brand span {
+        font-family: var(--font-display);
+        letter-spacing: 0.02em;
+      }
+
+      .theme-switch {
+        display: inline-flex;
+        padding: 4px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
+      }
+
+      .theme-option {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink-soft);
+        padding: 8px 14px;
+        font-size: 0.8rem;
+        font-weight: 800;
+        cursor: pointer;
+        transition: background 180ms ease, color 180ms ease;
+      }
+
+      .theme-option.is-active {
+        background: var(--theme-active-bg);
+        color: var(--theme-active-ink);
+      }
+
+      .top-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px 20px;
+        border-radius: 100px;
+        border: 1px solid var(--top-cta-border);
+        text-decoration: none;
+        background: var(--top-cta-bg);
+        color: var(--top-cta-color);
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+        box-shadow: var(--top-cta-shadow);
+      }
+
+      .top-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--top-cta-shadow-hover);
+      }
+
+      .hero {
+        display: grid;
+        gap: 42px;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        align-items: center;
+        padding: 42px 0 26px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--eyebrow-bg);
+        border: 1px solid var(--line);
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+        margin: 0 0 18px;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 5px var(--eyebrow-ring);
+      }
+
+      h1 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 760;
+        font-size: clamp(2.3rem, 5vw, 5rem);
+        line-height: 0.98;
+        letter-spacing: -0.028em;
+        max-width: 14ch;
+      }
+
+      .hero-copy p {
+        max-width: 54ch;
+        color: var(--ink-soft);
+        margin: 20px 0 0;
+        font-size: clamp(1rem, 1.55vw, 1.2rem);
+      }
+
+      .cta-row {
+        margin-top: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        padding: 15px 24px;
+        text-decoration: none;
+        font-weight: 800;
+        border: 1px solid transparent;
+        transition: transform 190ms ease, box-shadow 190ms ease, background 190ms ease;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background: linear-gradient(150deg, var(--accent), var(--accent-deep));
+        box-shadow: var(--shadow-md);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 19px 32px rgba(161, 48, 16, 0.32);
+      }
+
+      .btn-muted {
+        color: var(--btn-muted-ink);
+        border-color: var(--line);
+        background: var(--btn-muted-bg);
+      }
+
+      .btn-muted:hover {
+        transform: translateY(-2px);
+        background: var(--btn-muted-bg-hover);
+      }
+
+      .price-note {
+        width: 100%;
+        font-size: 0.92rem;
+        color: var(--ink-soft);
+        margin: 2px 0 0;
+      }
+
+      .hero-points {
+        margin: 28px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .hero-points li {
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--hero-chip-bg);
+        color: var(--hero-chip-ink);
+        font-size: 0.9rem;
+      }
+
+      .hero-shot {
+        position: relative;
+      }
+
+      .glow {
+        position: absolute;
+        inset: 12% -10% 0;
+        background: radial-gradient(circle, var(--hero-glow), transparent 62%);
+        filter: blur(12px);
+        z-index: -1;
+      }
+
+      .device-shell {
+        width: min(100%, 380px);
+        margin: 0 auto;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+        padding: 0;
+        transform: none;
+      }
+
+      .device-shell img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 0;
+        border: 0;
+      }
+
+      .proof {
+        margin: 22px auto 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .proof-card {
+        border-radius: var(--radius-md);
+        padding: 20px 18px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: var(--proof-shadow);
+      }
+
+      .proof-card strong {
+        font-family: var(--font-display);
+        display: block;
+        font-size: clamp(1.45rem, 2.2vw, 2rem);
+        line-height: 1;
+      }
+
+      .proof-card span {
+        display: block;
+        color: var(--ink-soft);
+        margin-top: 6px;
+        font-size: 0.95rem;
+      }
+
+      .features {
+        padding: 78px 0 38px;
+      }
+
+      .features h2,
+      .showcase h2,
+      .final-cta h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 730;
+        font-size: clamp(1.85rem, 3.7vw, 3.4rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+      }
+
+      .features-head {
+        max-width: 62ch;
+      }
+
+      .features-head p {
+        color: var(--ink-soft);
+        margin: 15px 0 0;
+      }
+
+      .feature-list {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 28px;
+      }
+
+      .feature {
+        border-radius: var(--radius-md);
+        border: 1px solid var(--line);
+        background: var(--feature-bg);
+        padding: 20px;
+        box-shadow: var(--feature-shadow);
+        transition: transform 180ms ease;
+      }
+
+      .feature:hover {
+        transform: translateY(-4px);
+      }
+
+      .feature h3 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .feature p {
+        margin: 10px 0 0;
+        color: var(--ink-soft);
+        font-size: 0.98rem;
+      }
+
+      .showcase {
+        margin-top: 34px;
+        padding: clamp(20px, 3.7vw, 40px);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background:
+          linear-gradient(120deg, var(--showcase-bg-1), var(--showcase-bg-2));
+        box-shadow: var(--shadow-lg);
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 26px;
+        align-items: center;
+      }
+
+      .showcase p {
+        color: var(--ink-soft);
+        margin: 14px 0 0;
+        max-width: 45ch;
+      }
+
+      .showcase .btn {
+        margin-top: 20px;
+      }
+
+      .showcase-shot {
+        width: min(100%, 350px);
+        margin: 0 auto;
+        border-radius: 0;
+        background: transparent;
+        border: 0;
+        overflow: visible;
+        box-shadow: none;
+        padding: 0;
+      }
+
+      .showcase-shot img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 0;
+      }
+
+      .final-cta {
+        margin: 88px 0 42px;
+        padding: clamp(24px, 4.2vw, 54px);
+        border-radius: var(--radius-lg);
+        text-align: center;
+        background:
+          linear-gradient(160deg, var(--final-grad-1), var(--final-grad-2));
+        color: var(--final-ink);
+        box-shadow: 0 28px 48px rgba(131, 40, 15, 0.32);
+      }
+
+      .final-cta p {
+        margin: 16px auto 0;
+        max-width: 52ch;
+        color: var(--final-copy);
+      }
+
+      .final-cta .btn {
+        margin-top: 24px;
+        background: var(--final-btn-bg);
+        color: var(--final-btn-ink);
+        border-color: var(--final-btn-border);
+        box-shadow: var(--final-btn-shadow);
+      }
+
+      .final-cta small {
+        display: block;
+        margin-top: 16px;
+        opacity: 0.9;
+      }
+
+      footer {
+        padding: 0 0 28px;
+        text-align: center;
+        color: var(--footer-ink);
+        font-size: 0.9rem;
+      }
+
+      @keyframes lift-in {
+        0% {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade {
+        opacity: 0;
+        transform: translateY(14px);
+        animation: lift-in 650ms cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      }
+
+      .delay-1 {
+        animation-delay: 90ms;
+      }
+
+      .delay-2 {
+        animation-delay: 180ms;
+      }
+
+      .delay-3 {
+        animation-delay: 260ms;
+      }
+
+      @media (max-width: 1024px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .hero-shot {
+          max-width: 760px;
+          margin: 0 auto;
+        }
+
+        .feature-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .showcase {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .site-wrap {
+          width: min(1180px, calc(100% - 24px));
+        }
+
+        .topbar {
+          padding-top: 16px;
+        }
+
+        .theme-option {
+          padding: 7px 12px;
+        }
+
+        .top-cta {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 26px;
+        }
+
+        .feature-list,
+        .proof {
+          grid-template-columns: 1fr;
+        }
+
+        .device-shell {
+          width: min(100%, 340px);
+        }
+
+        .features {
+          padding-top: 64px;
+        }
+
+        .final-cta {
+          margin-top: 68px;
+        }
+      }
+
+      /* ===== Day & Night showcase section ===== */
+      .theme-showcase {
+        padding: clamp(72px, 9vw, 130px) 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: 48px;
+      }
+      .theme-showcase::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          55% 50% at 50% 55%,
+          rgba(255, 140, 80, 0.22),
+          transparent 70%
+        );
+        z-index: -1;
+        transition: background 600ms ease;
+        pointer-events: none;
+      }
+      .theme-showcase[data-show="neon"]::before {
+        background: radial-gradient(
+          55% 50% at 50% 55%,
+          rgba(24, 232, 200, 0.22),
+          transparent 70%
+        );
+      }
+      .theme-showcase h2 {
+        margin: 0 auto;
+        max-width: 18ch;
+        font-family: var(--font-display);
+        font-weight: 760;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+      }
+      .theme-showcase .ts-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--eyebrow-bg);
+        border: 1px solid var(--line);
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+        margin: 0 0 18px;
+      }
+      .theme-showcase .ts-eyebrow::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 5px var(--eyebrow-ring);
+      }
+      .theme-showcase .ts-lead {
+        max-width: 54ch;
+        margin: 18px auto 0;
+        color: var(--ink-soft);
+        font-size: clamp(1rem, 1.4vw, 1.15rem);
+      }
+      .ts-stage {
+        margin-top: clamp(36px, 5vw, 60px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(28px, 4vw, 48px);
+      }
+      .ts-phone-wrap {
+        position: relative;
+        width: min(100%, 380px);
+        aspect-ratio: 1 / 2;
+      }
+      .ts-phone {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: opacity 520ms ease,
+          transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .ts-warm {
+        filter:
+          drop-shadow(0 50px 80px rgba(120, 60, 14, 0.30))
+          drop-shadow(0 20px 32px rgba(120, 60, 14, 0.16));
+      }
+      .ts-neon {
+        filter:
+          drop-shadow(0 50px 80px rgba(0, 0, 0, 0.55))
+          drop-shadow(0 20px 32px rgba(0, 0, 0, 0.35))
+          drop-shadow(0 0 50px rgba(24, 232, 200, 0.18));
+      }
+      .theme-showcase[data-show="warm"] .ts-warm {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .theme-showcase[data-show="warm"] .ts-neon {
+        opacity: 0;
+        transform: scale(0.94);
+      }
+      .theme-showcase[data-show="neon"] .ts-neon {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .theme-showcase[data-show="neon"] .ts-warm {
+        opacity: 0;
+        transform: scale(0.94);
+      }
+
+      .ts-toggle {
+        display: inline-grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 4px;
+        position: relative;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 20px rgba(81, 49, 21, 0.12);
+      }
+      .ts-thumb {
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 4px;
+        width: calc(50% - 4px);
+        border-radius: 999px;
+        z-index: 1;
+        transition: transform 360ms cubic-bezier(0.5, 0, 0.2, 1),
+          background-color 360ms ease;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      }
+      .theme-showcase[data-show="warm"] .ts-thumb {
+        transform: translateX(0);
+        background: #ff5f2c;
+      }
+      .theme-showcase[data-show="neon"] .ts-thumb {
+        transform: translateX(100%);
+        background: #18e8c8;
+      }
+      .ts-opt {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        padding: 11px 30px;
+        border-radius: 999px;
+        font-family: var(--font-display);
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: var(--ink-soft);
+        z-index: 2;
+        position: relative;
+        transition: color 320ms ease;
+      }
+      .ts-opt.active { color: #ffffff; }
+      body[data-theme="neon"] .theme-showcase[data-show="neon"] .ts-opt.active {
+        color: #06151c;
+      }
+      .ts-caption {
+        font-size: 0.82rem;
+        color: var(--ink-soft);
+        margin-top: 4px;
+        letter-spacing: 0.01em;
+      }
+
+      /* ===== Testimonials ===== */
+      .testimonials {
+        padding: clamp(72px, 10vw, 140px) 0;
+        margin-top: 48px;
+      }
+      .testimonials-head {
+        max-width: 760px;
+        margin: 0 auto clamp(40px, 5vw, 56px);
+        text-align: center;
+      }
+      .testimonials-head h2 {
+        margin: 0 auto;
+        max-width: 18ch;
+        font-family: var(--font-display);
+        font-weight: 760;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+      }
+      .testimonials-rating {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 18px auto 0;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        font-size: 0.88rem;
+        color: var(--ink-soft);
+        font-weight: 500;
+      }
+      .testimonials-rating .stars { color: var(--accent); letter-spacing: 0.04em; }
+      .testimonials-rating strong { color: var(--ink); font-weight: 700; }
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+      }
+      @media (max-width: 1024px) {
+        .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 620px) {
+        .testimonials-grid { grid-template-columns: 1fr; }
+      }
+      .testimonial {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        backdrop-filter: blur(8px);
+        transition: transform 240ms ease, box-shadow 240ms ease;
+      }
+      .testimonial:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+      }
+      .testimonial-stars {
+        color: var(--accent);
+        font-size: 0.82rem;
+        letter-spacing: 0.18em;
+      }
+      .testimonial-quote {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 600;
+        line-height: 1.4;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        margin: 0;
+      }
+      .testimonial-attrib {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+      }
+      .testimonial-name {
+        font-size: 0.92rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .testimonial-role {
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-wrap">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Skeuo Calc">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>Skeuo Calc</span>
+        </a>
+        <div class="top-actions">
+          <div class="theme-switch" role="group" aria-label="Theme preview">
+            <button class="theme-option is-active" type="button" data-theme-toggle="warm" aria-pressed="true">
+              Warm
+            </button>
+            <button class="theme-option" type="button" data-theme-toggle="neon" aria-pressed="false">
+              Neon
+            </button>
+          </div>
+          <a class="top-cta" href="https://apps.apple.com/us/search?term=skeuo%20calc" target="_blank" rel="noopener noreferrer">
+            Download On App Store
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero fade" id="top">
+          <div class="hero-copy">
+            <p class="eyebrow">No ads. No subscriptions. Pure calculator joy.</p>
+            <h1>The calculator app that makes math feel premium.</h1>
+            <p>
+              Skeuo Calc blends tactile skeuomorphic design with everyday power:
+              instant basic math, scientific tools, unit conversions, currency
+              conversion, and financial calculations in one beautiful app.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="https://apps.apple.com/us/search?term=skeuo%20calc" target="_blank" rel="noopener noreferrer">
+                Download On App Store
+              </a>
+              <a class="btn btn-muted" href="#features">See Features</a>
+              <p class="price-note">Launch vibe: one-time purchase, built for impulse joy.</p>
+            </div>
+            <ul class="hero-points">
+              <li>Works offline</li>
+              <li>7 calculator modes</li>
+              <li>Haptic and sound feedback</li>
+            </ul>
+          </div>
+          <div class="hero-shot">
+            <div class="glow" aria-hidden="true"></div>
+            <div class="device-shell">
+              <img
+                src="images/calculator-hero-phone-clean.png"
+                data-theme-image
+                alt="Screenshot of the Skeuo Calc interface"
+                loading="eager"
+              >
+            </div>
+          </div>
+        </section>
+
+        <section class="proof fade delay-1" aria-label="Product highlights">
+          <article class="proof-card">
+            <strong>7</strong>
+            <span>integrated calculator and converter modes</span>
+          </article>
+          <article class="proof-card">
+            <strong>0</strong>
+            <span>ads, paywalls, and attention traps</span>
+          </article>
+          <article class="proof-card">
+            <strong>100%</strong>
+            <span>designed for tactile feel and fast daily use</span>
+          </article>
+        </section>
+
+        <section class="features" id="features">
+          <div class="features-head fade delay-1">
+            <h2>Built to look expensive. Built to be useful.</h2>
+            <p>
+              Every detail is tuned for speed and satisfaction. Tap once, feel
+              response, and move on with confidence.
+            </p>
+          </div>
+          <div class="feature-list">
+            <article class="feature fade delay-1">
+              <h3>Basic + Scientific</h3>
+              <p>From quick totals to trig and logs, no app switching needed.</p>
+            </article>
+            <article class="feature fade delay-1">
+              <h3>Currency Converter</h3>
+              <p>Convert world currencies with clean, simple workflows.</p>
+            </article>
+            <article class="feature fade delay-2">
+              <h3>Unit Converter</h3>
+              <p>Length, mass, volume, and more in a clear, fast interface.</p>
+            </article>
+            <article class="feature fade delay-2">
+              <h3>TVM Solver</h3>
+              <p>Time value of money tools for serious financial calculations.</p>
+            </article>
+            <article class="feature fade delay-3">
+              <h3>Date and Percent Tools</h3>
+              <p>Crunch date intervals and percentage math in seconds.</p>
+            </article>
+            <article class="feature fade delay-3">
+              <h3>Theme and Feedback Control</h3>
+              <p>Tune colors, haptics, and sound to match your personal vibe.</p>
+            </article>
+          </div>
+
+          <section class="showcase fade delay-2" id="screenshot">
+            <div>
+              <h2>Your calculator can finally look this good.</h2>
+              <p>
+                This is the real app interface. Rich depth, clean readability,
+                and a tactile personality that makes you want to open it again.
+              </p>
+              <a class="btn btn-primary" href="https://apps.apple.com/us/search?term=skeuo%20calc" target="_blank" rel="noopener noreferrer">
+                Get Skeuo Calc On App Store
+              </a>
+            </div>
+            <div class="showcase-shot">
+              <img
+                src="images/calculator-hero-phone-clean.png"
+                data-theme-image
+                alt="Detailed screenshot of Skeuo Calc"
+                loading="lazy"
+              >
+            </div>
+          </section>
+        </section>
+
+        <section class="theme-showcase fade delay-2" data-show="warm" aria-label="Warm and Neon themes side by side">
+          <div class="reveal" style="max-width: 720px; margin: 0 auto;">
+            <p class="ts-eyebrow">Day &amp; Night</p>
+            <h2>Two moods. One app.</h2>
+            <p class="ts-lead">
+              Switch between Warm and Neon with a tap. Your calculator
+              follows the time of day — or your taste.
+            </p>
+          </div>
+
+          <div class="ts-stage">
+            <div class="ts-phone-wrap">
+              <img class="ts-phone ts-warm" src="images/calculator-hero-phone-clean.png"
+                   alt="iPhone showing Skeuo Calc in the Warm theme with orange operators" loading="lazy" />
+              <img class="ts-phone ts-neon" src="images/calculator-hero-phone-neon.png"
+                   alt="iPhone showing Skeuo Calc in the Neon theme with mint operators" loading="lazy" />
+            </div>
+            <div class="ts-toggle" role="radiogroup" aria-label="Preview theme">
+              <div class="ts-thumb" aria-hidden="true"></div>
+              <button type="button" class="ts-opt active" role="radio"
+                      aria-checked="true" data-mode="warm">Warm</button>
+              <button type="button" class="ts-opt" role="radio"
+                      aria-checked="false" data-mode="neon">Neon</button>
+            </div>
+            <p class="ts-caption">This section only — the rest of the page follows your top-of-page theme.</p>
+          </div>
+        </section>
+
+        <section class="testimonials fade delay-2" aria-label="What people say">
+          <div class="testimonials-head reveal">
+            <p class="eyebrow">Real reviews</p>
+            <h2>What people are saying.</h2>
+            <p class="testimonials-rating">
+              <span class="stars">★★★★★</span>
+              <span><strong>4.9</strong> · App Store</span>
+            </p>
+          </div>
+
+          <div class="testimonials-grid">
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"Honestly? It does what any calculator does. But it's the first one I actually want to open."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Marta R.</span>
+                <span class="testimonial-role">Product designer · Milan</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"The age calculator is weirdly satisfying. I check coworkers' birthdays just to feel something."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Dani K.</span>
+                <span class="testimonial-role">iOS engineer</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"Currency rates always fresh, unit converter solid, history right on screen. Money well spent."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Tom L.</span>
+                <span class="testimonial-role">Freelance designer</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"Time-zone converter saved me from three different tabs. One app, done."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Priya S.</span>
+                <span class="testimonial-role">Remote PM</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"The haptic on the equals key is unreasonable. I do extra math just to feel it."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Luca M.</span>
+                <span class="testimonial-role">Audio engineer</span>
+              </div>
+            </article>
+            <article class="testimonial">
+              <span class="testimonial-stars">★★★★★</span>
+              <p class="testimonial-quote">"My calculator shouldn't have a personality. This one does, and I forgive it."</p>
+              <div class="testimonial-attrib">
+                <span class="testimonial-name">Hannah B.</span>
+                <span class="testimonial-role">Writer · Berlin</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="final-cta fade delay-3" id="download">
+          <h2>Do not settle for a boring calculator icon.</h2>
+          <p>
+            Upgrade your daily workflow with a calculator you actually enjoy
+            touching. Open the App Store and make the switch now.
+          </p>
+          <a class="btn" href="https://apps.apple.com/us/search?term=skeuo%20calc" target="_blank" rel="noopener noreferrer">
+            Download On App Store
+          </a>
+          <small>Available for iPhone and iPad.</small>
+        </section>
+      </main>
+
+      <footer>
+        Skeuo Calc by Matteo Vitali
+      </footer>
+    </div>
+    <script>
+      (() => {
+        const THEME_KEY = "skeuo-home-theme";
+        const images = document.querySelectorAll("[data-theme-image]");
+        const toggles = document.querySelectorAll("[data-theme-toggle]");
+        const themeConfig = {
+          warm: { image: "images/calculator-hero-phone-clean.png" },
+          neon: { image: "images/calculator-hero-phone-neon.png" },
+        };
+
+        function applyTheme(themeName) {
+          const theme = themeConfig[themeName] ? themeName : "warm";
+          const config = themeConfig[theme];
+          document.body.dataset.theme = theme;
+
+          images.forEach((img) => {
+            img.src = config.image;
+          });
+
+          toggles.forEach((button) => {
+            const isActive = button.dataset.themeToggle === theme;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", isActive ? "true" : "false");
+          });
+
+          localStorage.setItem(THEME_KEY, theme);
+        }
+
+        toggles.forEach((button) => {
+          button.addEventListener("click", () => {
+            applyTheme(button.dataset.themeToggle);
+          });
+        });
+
+        const queryTheme = new URLSearchParams(window.location.search).get("theme");
+        const initialTheme = queryTheme || localStorage.getItem(THEME_KEY) || "warm";
+        applyTheme(initialTheme);
+      })();
+
+      // ---- Day/Night showcase toggle (section-local) ----
+      (function () {
+        const section = document.querySelector(".theme-showcase");
+        if (!section) return;
+        const opts = section.querySelectorAll(".ts-opt");
+        opts.forEach((o) => {
+          o.addEventListener("click", () => {
+            const mode = o.dataset.mode;
+            section.setAttribute("data-show", mode);
+            opts.forEach((b) => {
+              const on = b === o;
+              b.classList.toggle("active", on);
+              b.setAttribute("aria-checked", on ? "true" : "false");
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
