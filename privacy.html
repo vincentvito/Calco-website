@@ -97,7 +97,12 @@
         text-transform: uppercase;
         color: var(--ink-soft);
       }
-      @media (min-width: 800px) { .nav-spec { display: block; } }
+      @media (min-width: 1100px) { .nav-spec { display: block; } }
+      @media (max-width: 480px) {
+        .nav-inner { gap: 12px; }
+        .nav-mark { font-size: 14px; }
+        .nav-mark .model { display: none; }
+      }
       .nav-back {
         font-size: 14px;
         font-weight: 600;
@@ -111,6 +116,9 @@
           color 200ms var(--ease-out);
       }
       .nav-back:hover { background: var(--ink); color: var(--paper); }
+      @media (max-width: 480px) {
+        .nav-back { font-size: 12px; padding: 10px 12px; white-space: nowrap; }
+      }
 
       .wrap {
         max-width: 880px;
@@ -315,8 +323,8 @@
   <body>
     <nav class="nav" aria-label="Primary">
       <div class="nav-inner">
-        <a class="nav-mark" href="index.html">Calc<span class="dot">o</span><span class="model">/01</span></a>
-        <span class="nav-spec">Calco / 01 · Legal · MMXXVI</span>
+        <a class="nav-mark" href="index.html">Skeu<span class="dot">o</span>-Calculator<span class="model">/01</span></a>
+        <span class="nav-spec">Skeuo-Calculator / 01 · Legal · MMXXVI</span>
         <a class="nav-back" href="index.html">← Object №01</a>
       </div>
     </nav>

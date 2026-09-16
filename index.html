@@ -190,7 +190,12 @@
         text-transform: uppercase;
         color: var(--ink-soft);
       }
-      @media (min-width: 800px) { .nav-spec { display: block; } }
+      @media (min-width: 1100px) { .nav-spec { display: block; } }
+      @media (max-width: 480px) {
+        .nav-inner { gap: 12px; }
+        .nav-mark { font-size: 14px; }
+        .nav-mark .model { display: none; }
+      }
       .nav-cta {
         display: inline-flex;
         align-items: center;
@@ -840,8 +845,8 @@
     <!-- ============ NAV ============ -->
     <nav class="nav" aria-label="Primary">
       <div class="nav-inner">
-        <a class="nav-mark" href="#top">Calc<span class="dot">o</span><span class="model">/01</span></a>
-        <span class="nav-spec">Calco / 01 · Edition MMXXVI · iPhone &amp; iPad</span>
+        <a class="nav-mark" href="#top">Skeu<span class="dot">o</span>-Calculator<span class="model">/01</span></a>
+        <span class="nav-spec">Skeuo-Calculator / 01 · Edition MMXXVI · iPhone &amp; iPad</span>
         <a class="nav-cta" href="#acquire">Acquire</a>
       </div>
     </nav>
