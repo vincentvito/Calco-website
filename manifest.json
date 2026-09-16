@@ -1,11 +1,11 @@
 {
-    "name": "Calco / 01",
-    "short_name": "Calco",
+    "name": "Skeuo-Calculator",
+    "short_name": "Skeuo",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#fbf6ec",
     "theme_color": "#ff5f2c",
-    "description": "Calco. A tactile calculator for iPhone and iPad. No ads. No subscriptions.",
+    "description": "A skeuomorphic calculator for iPhone and iPad, with scientific maths, conversions and financial tools.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

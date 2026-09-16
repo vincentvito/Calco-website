@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Calco / 01. A premium tactile calculator for iPhone and iPad. No ads, no subscriptions, no apologies."
+      content="Skeuo-Calculator brings the look and feel of a desk calculator to iPhone and iPad. Skeuomorphic design, scientific maths, conversions and financial tools."
     />
-    <title>Calco / 01 · A tactile calculator for iPhone &amp; iPad</title>
+    <title>Skeuo-Calculator · A skeuomorphic calculator for iPhone &amp; iPad</title>
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link rel="manifest" href="manifest.json" />
@@ -668,51 +668,13 @@
         color: var(--ink);
       }
       .spec-val .accent { color: var(--orange); }
+      @media (max-width: 540px) {
+        .spec-row { grid-template-columns: 1fr; gap: 8px; }
+        .spec-val { margin: 0; }
+      }
 
       /* ============================================
-         08 · VOICES · testimonials as reader letters
-         ============================================ */
-      .voices-grid {
-        margin-top: clamp(32px, 4vw, 56px);
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: clamp(28px, 3vw, 56px) clamp(36px, 4vw, 72px);
-      }
-      @media (max-width: 720px) {
-        .voices-grid { grid-template-columns: 1fr; }
-      }
-      .voice {
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        gap: 18px;
-      }
-      .voice-quote {
-        margin: 0;
-        font-size: 21px;
-        line-height: 1.4;
-        font-weight: 500;
-        letter-spacing: -0.018em;
-        color: var(--ink);
-      }
-      .voice-quote::before {
-        content: "“";
-        font-size: 1em;
-        color: var(--orange);
-        line-height: 0;
-        position: relative;
-        top: 0.1em;
-        margin-right: 0.05em;
-      }
-      .voice-attrib {
-        font-size: var(--fs-small);
-        color: var(--ink-soft);
-        padding-top: 14px;
-        border-top: 1px solid var(--line);
-      }
-      .voice-attrib strong { color: var(--ink); font-weight: 700; }
-
-      /* ============================================
-         09 · ACQUIRE · drenched orange final
+         08 · ACQUIRE · drenched orange final
          ============================================ */
       .acquire {
         padding: clamp(96px, 12vw, 192px) 0;
@@ -846,8 +808,8 @@
     <nav class="nav" aria-label="Primary">
       <div class="nav-inner">
         <a class="nav-mark" href="#top">Skeu<span class="dot">o</span>-Calculator<span class="model">/01</span></a>
-        <span class="nav-spec">Skeuo-Calculator / 01 · Edition MMXXVI · iPhone &amp; iPad</span>
-        <a class="nav-cta" href="#acquire">Acquire</a>
+        <span class="nav-spec">Skeuo-Calculator / 01 · iPhone &amp; iPad</span>
+        <a class="nav-cta" href="#acquire">Get the app</a>
       </div>
     </nav>
 
@@ -857,41 +819,41 @@
         <div class="wide">
           <div class="chapter-mark reveal">
             <span class="num">01</span>
-            <span class="label">An Object Statement</span>
+            <span class="label">Skeuo-Calculator</span>
           </div>
 
           <div class="hero-grid">
             <div class="hero-headline reveal">
-              <p class="meta">Calco / 01 · Object №01</p>
-              <h1>A calculator, made&nbsp;by&nbsp;hand.</h1>
+              <p class="meta">A skeuomorphic calculator for iPhone &amp; iPad</p>
+              <h1>A desk calculator.<br />On&nbsp;your&nbsp;phone.</h1>
               <p class="lead">
-                Calco is a tactile, opinionated calculator for iPhone
-                and iPad. Built once. Priced once. No ads, no subscriptions,
-                no apologies.
+                Raised keys, soft shadows and a display set into the panel.
+                Skeuo brings the familiar feel of a desk calculator to
+                everyday maths, conversions and more.
               </p>
               <div class="hero-cta-row">
                 <a class="btn-primary" href="#acquire">
-                  Acquire from the App Store
+                  Get Skeuo-Calculator
                 </a>
-                <a class="btn-link" href="#subject">Read the feature</a>
+                <a class="btn-link" href="#subject">About the design</a>
               </div>
             </div>
 
             <figure class="hero-image reveal">
               <img
                 src="images/v4-object-portrait.jpg"
-                alt="Calco shown on a modern iPhone in natural titanium, set against a saturated orange field"
+                alt="A calculator app on a titanium iPhone against an orange background"
                 loading="eager"
                 fetchpriority="high"
               />
-              <figcaption>Plate 01 · The Subject, isolated</figcaption>
+              <figcaption>Plate 01 · The calculator</figcaption>
             </figure>
           </div>
 
           <dl class="hero-meta reveal">
             <div>
-              <dt>Issue</dt>
-              <dd>№01 · MMXXVI</dd>
+              <dt>Design</dt>
+              <dd>Skeuomorphic</dd>
             </div>
             <div>
               <dt>Made by</dt>
@@ -914,34 +876,27 @@
         <div class="container">
           <div class="chapter-mark reveal">
             <span class="num">02</span>
-            <span class="label">The Subject</span>
+            <span class="label">The design</span>
           </div>
 
           <div class="subject-grid">
-            <h2 class="reveal">Why this calculator&nbsp;exists.</h2>
+            <h2 class="reveal">What is skeuomorphism?</h2>
             <div class="subject-body reveal">
               <div class="body-prose">
                 <p>
-                  The default iOS calculator works. It also looks like
-                  nothing, feels like nothing, and asks nothing of you.
-                  Calco was made for the moments when that is not
-                  enough. When you want the satisfaction of pressing a key
-                  that presses back. When you want a display that glows
-                  the way an old desk calculator glowed. When you want a
-                  tool that respects the small act of doing math.
+                  Skeuomorphism means giving something on a screen the
+                  appearance of a physical object. In Skeuo, that means
+                  buttons with depth, shadows around their edges and a
+                  display that looks set into the surface. It takes its
+                  cues from the calculators you could keep on your desk.
                 </p>
                 <p>
-                  Seven modes. One unhurried surface. Basic and scientific.
-                  Currency and units. A finance solver for the spreadsheet
-                  hours, a date calculator for the planning hours, a
-                  percent calculator for the dinners. All under one panel
-                  of brushed silver aluminium that gets out of the way and
-                  lets you feel the keys.
+                  Basic and scientific calculations use the same keypad
+                  design. Currency, units, dates, percentages and financial
+                  calculations each have their own tools.
                 </p>
                 <p>
-                  Priced once. Sold once. Nothing renews. The economics
-                  match the object: pay for what was made, then keep it
-                  for as long as you want it.
+                  Skeuo is a one-time purchase, with no ads or subscription.
                 </p>
               </div>
             </div>
@@ -954,14 +909,14 @@
         <div class="container">
           <div class="chapter-mark reveal">
             <span class="num">03</span>
-            <span class="label">The Material</span>
+            <span class="label">The details</span>
           </div>
 
           <div class="material-grid">
             <figure class="material-image reveal">
               <img
                 src="images/v4-touch-macro.jpg"
-                alt="Extreme macro of a fingertip about to press the warm-orange equals key on the Calco app"
+                alt="A fingertip above the calculator’s raised-looking keys"
                 loading="lazy"
               />
             </figure>
@@ -970,37 +925,34 @@
               <li>
                 <span class="key">i.</span>
                 <div>
-                  <h4>Brushed silver aluminium panel</h4>
-                  <p>A single milled surface holds the entire keypad. The
-                    grain runs left to right; light catches it the way it
-                    catches a watch case.</p>
+                  <h4>A textured panel</h4>
+                  <p>A fine grain gives the background the appearance of
+                    a physical surface.</p>
                 </div>
               </li>
               <li>
                 <span class="key">ii.</span>
                 <div>
-                  <h4>Sculpted rounded-square keys</h4>
-                  <p>Each key is a soft-cornered rectangle, set just proud
-                    of the panel. They press back when you tap, with a
-                    custom haptic tuned for the hand.</p>
+                  <h4>Keys with depth</h4>
+                  <p>Rounded edges, highlights and shadows make the keys
+                    look raised. Optional sound and haptics add feedback
+                    when you tap.</p>
                 </div>
               </li>
               <li>
                 <span class="key">iii.</span>
                 <div>
-                  <h4>Dark-teal LCD with green emissive digits</h4>
-                  <p>The display is calibrated to look like the LCD from a
-                    1980s Casio MS-80, with a slight glow on each digit.
-                    Sharp at any distance, gentle in any light.</p>
+                  <h4>A recessed display</h4>
+                  <p>The dark display sits visually below the keypad
+                    surface, with large numerals for the result.</p>
                 </div>
               </li>
               <li>
                 <span class="key">iv.</span>
                 <div>
-                  <h4>Warm-orange operator column</h4>
-                  <p>The same warm orange that has lived on Casio keypads
-                    since 1985, applied with intent. The equals key
-                    rewards a press with both colour and haptic.</p>
+                  <h4>Orange operators, teal equals</h4>
+                  <p>Colour separates the number keys from the operators
+                    and makes the equals key easy to find.</p>
                 </div>
               </li>
             </ul>
@@ -1017,25 +969,24 @@
           </div>
 
           <div class="in-use-grid">
-            <h2 class="reveal">For the hours that ask&nbsp;for math.</h2>
+            <h2 class="reveal">For the maths you do&nbsp;every&nbsp;day.</h2>
             <div class="reveal body-prose">
               <p>
-                The kind of math that gets done in studios, kitchens, on
-                trains, at the corner of a table. Currency in a borrowed
-                café, a tip in a restaurant that runs cash only, a TVM
-                solve in a quiet morning, a date interval right before a
-                deadline. The calculator that comes with the phone does
-                not honour those moments. This one tries to.
+                Check a price in another currency, convert a measurement
+                or work out a discount. When you need more, there are
+                scientific functions, a graph plotter, date calculations
+                and a time value of money solver for payments, rates and
+                future values.
               </p>
             </div>
           </div>
 
-          <div class="gallery reveal" aria-label="Lifestyle plates">
+          <div class="gallery reveal" aria-label="The calculator in use">
             <figure class="plate-a">
               <div class="frame">
                 <img
                   src="images/v4-life-a.jpg"
-                  alt="Top-down still life: a modern iPhone running Calco on a pale oak desk, next to a small white espresso cup, a folded sand-coloured linen napkin, an olive-branch sprig, and a caramel leather notebook in soft morning light"
+                  alt="The calculator on a desk beside a coffee and notebook"
                   loading="lazy"
                 />
               </div>
@@ -1046,7 +997,7 @@
               <div class="frame">
                 <img
                   src="images/v4-life-b.jpg"
-                  alt="Three-quarter close-up of an iPhone running Calco propped against a stack of vintage design books on a worn oak workbench, beside a ceramic mug of tea, paper paint chips in earth tones, and a wooden ruler, in warm afternoon light"
+                  alt="The calculator propped against design books on a wooden workbench"
                   loading="lazy"
                 />
               </div>
@@ -1057,7 +1008,7 @@
               <div class="frame">
                 <img
                   src="images/v4-life-c.jpg"
-                  alt="Slight overhead: an iPhone running Calco in Scientific mode on a pale oak drafting desk beside a sheet of cream graph paper with a hand-drawn elevation, a brass-and-walnut drafting compass, three sharpened pencils in a terracotta dish, and a folded sage-linen cloth"
+                  alt="The scientific calculator on a drafting desk with drawing tools"
                   loading="lazy"
                 />
               </div>
@@ -1068,7 +1019,7 @@
               <div class="frame">
                 <img
                   src="images/v4-life-d.jpg"
-                  alt="Close-up of a relaxed hand holding an iPhone running Calco, against soft cream linen drapery diffused by warm afternoon daylight"
+                  alt="A hand holding an iPhone with the calculator open"
                   loading="lazy"
                 />
               </div>
@@ -1079,7 +1030,7 @@
               <div class="frame">
                 <img
                   src="images/v4-life-e.jpg"
-                  alt="Wide overhead: an iPhone running Calco's Graph Plotter showing the parabola y = x², lying on a pale oak desk between a grid notebook with a hand-drawn parabola in indigo ink, a sharpened pencil, a vintage transparent ruler, a ceramic cup of tea on a saucer, and a folded sage-linen napkin"
+                  alt="The graph plotter beside a drawing of a parabola"
                   loading="lazy"
                 />
               </div>
@@ -1094,17 +1045,15 @@
         <div class="container">
           <div class="chapter-mark reveal">
             <span class="num">05</span>
-            <span class="label">Two States</span>
+            <span class="label">Appearance</span>
           </div>
 
           <div class="in-use-grid">
-            <h2 class="reveal">Warm by day.<br />Neon by night.</h2>
+            <h2 class="reveal">Light or&nbsp;dark.</h2>
             <div class="reveal body-prose">
               <p>
-                Two finished themes, both shipped, both considered. The
-                Warm theme borrows from a desk lamp at 4pm. The Neon theme
-                borrows from a single brass lamp at midnight. You can pick
-                one, or let iOS choose for you.
+                Choose a light or dark appearance in Settings. Both keep
+                the same layout, rounded keys and sense of depth.
               </p>
             </div>
           </div>
@@ -1114,13 +1063,13 @@
               <div class="state-image">
                 <img
                   src="images/v3-hero-phone-light.png"
-                  alt="iPhone showing Calco in the Warm theme, angled in 3D, peach gradient background, warm orange operator keys"
+                  alt="The light appearance, with a pale panel, orange operators and a teal equals key"
                   loading="lazy"
                 />
               </div>
               <figcaption>
-                <span class="state-name">Warm</span>
-                <span class="state-desc">Peach gradient, orange operators, the daytime mood.</span>
+                <span class="state-name">Light</span>
+                <span class="state-desc">A pale panel with dark numerals and orange operators.</span>
               </figcaption>
             </figure>
 
@@ -1128,13 +1077,13 @@
               <div class="state-image">
                 <img
                   src="images/v3-hero-phone-dark.png"
-                  alt="iPhone showing Calco in the Neon theme, angled in 3D, navy gradient background, mint-teal operator keys"
+                  alt="The dark appearance, with a dark panel and bright numerals"
                   loading="lazy"
                 />
               </div>
               <figcaption>
-                <span class="state-name">Neon</span>
-                <span class="state-desc">Navy gradient, mint operators, the late-hour mood.</span>
+                <span class="state-name">Dark</span>
+                <span class="state-desc">A darker panel with bright numerals and coloured keys.</span>
               </figcaption>
             </figure>
           </div>
@@ -1146,30 +1095,28 @@
         <div class="container">
           <div class="chapter-mark reveal">
             <span class="num">06</span>
-            <span class="label">Heritage</span>
+            <span class="label">Inspiration</span>
           </div>
 
           <div class="heritage-grid">
             <div class="reveal">
-              <h2>The line, from 1985 to&nbsp;today.</h2>
+              <h2>It started with a desk&nbsp;calculator.</h2>
               <p class="body-prose" style="margin-top: clamp(20px, 2.4vw, 32px);">
-                The Casio MS-80 came out of an industrial design tradition
-                that wanted tools to feel honest. Cream plastic, grey
-                rubber, a small pink C key, an LCD that glowed exactly
-                enough. It sat next to notepads in offices for forty
-                years. Calco is what that object would look like if
-                it were rebuilt today for iOS.
+                The Casio MS-80 is one of the references behind Skeuo.
+                Its separate display, rounded buttons and coloured keys
+                give it a recognisable shape. Those details carry over
+                into the app, alongside tools for calculations a desk
+                calculator could not handle.
               </p>
-              <blockquote class="heritage-quote">
-                The warmth of a 1980s desk calculator. The precision of a
-                modern OS.
-              </blockquote>
+              <p class="heritage-quote">
+                The name Skeuo comes from skeuomorphism.
+              </p>
             </div>
 
             <figure class="heritage-image reveal">
               <img
                 src="images/v3-heritage-side-by-side.jpg"
-                alt="A vintage cream Casio MS-80 desktop calculator next to a modern iPhone running Calco, flat-lay on beige paper"
+                alt="A Casio MS-80 desk calculator beside the iPhone app"
                 loading="lazy"
               />
             </figure>
@@ -1185,97 +1132,58 @@
             <span class="label">Specifications</span>
           </div>
 
-          <h2 class="reveal">Quiet&nbsp;facts.</h2>
+          <h2 class="reveal">What’s&nbsp;included.</h2>
 
           <dl class="spec-table reveal">
             <div class="spec-row">
               <dt class="spec-key">Platform</dt>
-              <dd class="spec-val">iPhone &amp; iPad, universal, iOS 17 or later.</dd>
+              <dd class="spec-val">iPhone and iPad. Requires iOS 17 or later.</dd>
             </div>
             <div class="spec-row">
               <dt class="spec-key">Modes</dt>
               <dd class="spec-val">
-                <span class="accent">Seven.</span> Basic, Scientific, Currency, Units, TVM, Date, Percent.
+                Basic and scientific calculators, currency and unit converters, a TVM solver, date and percentage calculations, and a graph plotter.
               </dd>
             </div>
             <div class="spec-row">
               <dt class="spec-key">Themes</dt>
-              <dd class="spec-val">Warm and Neon. Automatic with iOS appearance.</dd>
+              <dd class="spec-val">Light and dark appearances.</dd>
             </div>
             <div class="spec-row">
               <dt class="spec-key">Pricing</dt>
               <dd class="spec-val">
-                <span class="accent">$7.99,</span> paid once. No ads, no subscriptions, no tracking.
+                <span class="accent">$7.99.</span> One-time purchase. No ads or subscription.
               </dd>
             </div>
             <div class="spec-row">
               <dt class="spec-key">Haptics &amp; Sound</dt>
-              <dd class="spec-val">Custom-tuned per key. Optional throughout.</dd>
+              <dd class="spec-val">Key sounds and haptic feedback. Turn either off in Settings.</dd>
             </div>
             <div class="spec-row">
               <dt class="spec-key">Updates</dt>
-              <dd class="spec-val">Lifetime. Bug fixes and new modes included.</dd>
+              <dd class="spec-val">App updates included in your purchase.</dd>
             </div>
           </dl>
         </div>
       </section>
 
-      <!-- ============ 08 · VOICES ============ -->
-      <section class="chapter chapter--alt">
-        <div class="container">
-          <div class="chapter-mark reveal">
-            <span class="num">08</span>
-            <span class="label">Voices</span>
-          </div>
-
-          <h2 class="reveal" style="max-width: 18ch;">Letters from the people who&nbsp;use&nbsp;it.</h2>
-
-          <div class="voices-grid">
-            <article class="voice reveal">
-              <p class="voice-quote">It does what any calculator does. But it is the first one I actually want to open.</p>
-              <p class="voice-attrib"><strong>Marta R.</strong> · Product designer, Milan</p>
-            </article>
-            <article class="voice reveal">
-              <p class="voice-quote">The age calculator is weirdly satisfying. I check coworkers' birthdays just to feel something.</p>
-              <p class="voice-attrib"><strong>Dani K.</strong> · iOS engineer</p>
-            </article>
-            <article class="voice reveal">
-              <p class="voice-quote">Currency rates always fresh, unit converter solid, history right on screen. Money well spent.</p>
-              <p class="voice-attrib"><strong>Tom L.</strong> · Freelance designer</p>
-            </article>
-            <article class="voice reveal">
-              <p class="voice-quote">Time-zone converter saved me from three different tabs. One app, done.</p>
-              <p class="voice-attrib"><strong>Priya S.</strong> · Remote PM</p>
-            </article>
-            <article class="voice reveal">
-              <p class="voice-quote">The haptic on the equals key is unreasonable. I do extra math just to feel it.</p>
-              <p class="voice-attrib"><strong>Luca M.</strong> · Audio engineer</p>
-            </article>
-            <article class="voice reveal">
-              <p class="voice-quote">My calculator should not have a personality. This one does, and I forgive it.</p>
-              <p class="voice-attrib"><strong>Hannah B.</strong> · Writer, Berlin</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============ 09 · ACQUIRE ============ -->
+      <!-- ============ 08 · ACQUIRE ============ -->
       <section class="chapter chapter--orange acquire" id="acquire">
         <div class="container">
           <div class="chapter-mark reveal">
-            <span class="num">09</span>
-            <span class="label">Acquire</span>
+            <span class="num">08</span>
+            <span class="label">Get the app</span>
           </div>
 
           <div class="acquire-grid">
             <div class="reveal">
-              <h2>Available now from the App&nbsp;Store.</h2>
+              <h2>Get Skeuo-Calculator.</h2>
               <p class="lead">
-                Universal, for iPhone and iPad. $7.99, paid once, with
-                nothing that renews.
+                For iPhone and iPad. $7.99 as a one-time purchase,
+                with no ads or subscription.
               </p>
               <div class="acquire-cta-row">
-                <a class="btn-primary" href="https://apps.apple.com/us/search?term=skeuo%20calc" target="_blank" rel="noopener noreferrer">Open in App Store</a>
+                <a class="btn-primary" href="https://apps.apple.com/us/search?term=skeuo%20calc" target="_blank" rel="noopener noreferrer">Find on the App Store</a>
                 <a class="btn-link" href="#top">Back to top</a>
               </div>
             </div>
@@ -1290,11 +1198,11 @@
       <div class="container">
         <dl class="colophon-grid">
           <div>
-            <dt>Calco / 01</dt>
-            <dd>Object №01 · Edition MMXXVI<br />A tactile calculator for iPhone &amp; iPad.</dd>
+            <dt>Skeuo-Calculator</dt>
+            <dd>A skeuomorphic calculator<br />for iPhone &amp; iPad.</dd>
           </div>
           <div>
-            <dt>Designed &amp; written</dt>
+            <dt>Designed by</dt>
             <dd>Matteo Vitali · Milan, Italy</dd>
           </div>
           <div>
